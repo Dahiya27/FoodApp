@@ -49,6 +49,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         EditText name=(EditText)findViewById(R.id.name);
         EditText emailid = (EditText) findViewById(R.id.emailid);
         EditText password = (EditText) findViewById(R.id.password);
+        EditText cpassword=(EditText) findViewById(R.id.cpassword);
         Button signup_button = (Button) findViewById(R.id.signup_button);
 
         signup_button.setOnClickListener(new View.OnClickListener() {
@@ -57,15 +58,18 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 String txt_emailid = emailid.getText().toString();
                 String txt_password = password.getText().toString();
                 String Name=name.getText().toString();
-
+String txt_cpassword=cpassword.getText().toString();
                 if(TextUtils.isEmpty(txt_emailid) || TextUtils.isEmpty(txt_password)){
                     Toast.makeText(SignupActivity.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
                 } else if(txt_password.length() < 6){
                     Toast.makeText(SignupActivity.this, "Password Too Short!", Toast.LENGTH_SHORT).show();
-                } else {
+                }else if(!txt_password.equals(txt_cpassword)){
+                Toast.makeText(SignupActivity.this,"Passwords do not match!",Toast.LENGTH_SHORT).show();}
+                else {
                     registerUser(txt_emailid, txt_password,Name);
                 }
-            }
+                }
+            
         });
     }
 
