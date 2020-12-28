@@ -3,7 +3,6 @@ package com.example.android.foodapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,11 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SignupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private FirebaseAuth mAuth;

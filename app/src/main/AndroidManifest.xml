@@ -9,11 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodApp">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".SignupActivity"
-            android:label="Signup"/>
-        <activity android:name=".LoginActivity"
-            android:label="Login"/>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.FoodApp.NoActionBar"></activity>
+        <activity
+            android:name=".SignupActivity"
+            android:label="Signup" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login" />
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
