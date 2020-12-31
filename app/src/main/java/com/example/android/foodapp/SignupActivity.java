@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -45,6 +46,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         EditText password = (EditText) findViewById(R.id.password);
         EditText cpassword=(EditText) findViewById(R.id.cpassword);
         Button signup_button = (Button) findViewById(R.id.signup_button);
+        TextView loginbtn = (TextView)findViewById(R.id.direct);
 
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,19 +54,39 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 String txt_emailid = emailid.getText().toString();
                 String txt_password = password.getText().toString();
                 String Name=name.getText().toString();
-String txt_cpassword=cpassword.getText().toString();
-                if(TextUtils.isEmpty(txt_emailid) || TextUtils.isEmpty(txt_password)){
-                    Toast.makeText(SignupActivity.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
-                } else if(txt_password.length() < 6){
+                String txt_cpassword=cpassword.getText().toString();
+                if(TextUtils.isEmpty(Name)) {
+                    name.setError("Empty your name ");
+                    name.requestFocus();
+                }
+                else if(TextUtils.isEmpty(txt_emailid)) {
+                    emailid.setError("Enter EmailId");
+                    emailid.requestFocus();
+                }
+                else if(TextUtils.isEmpty(txt_password)) {
+                    password.setError("Enter password");
+                    password.requestFocus();
+                }
+                else if(txt_password.length() < 6){
                     Toast.makeText(SignupActivity.this, "Password Too Short!", Toast.LENGTH_SHORT).show();
-                }else if(!txt_password.equals(txt_cpassword)){
-                Toast.makeText(SignupActivity.this,"Passwords do not match!",Toast.LENGTH_SHORT).show();}
+                }else if(!txt_password.equals(txt_cpassword)) {
+                    cpassword.setError("Password did not Match");
+                    cpassword.requestFocus();
+                }
                 else {
                     registerUser(txt_emailid, txt_password,Name);
                 }
-                }
-            
+            }
+
         });
+        loginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                finish();
+            }
+        });
+
     }
 
     private void registerUser(String emailid,  String password,String Name){
@@ -77,10 +99,11 @@ String txt_cpassword=cpassword.getText().toString();
                     finish();
                 }
                 else {
-                    Toast.makeText(SignupActivity.this, "Sorry "+Name+".Your Signup has failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivity.this, "Sorry "+Name+". this Email is already used!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
     }
 
     @Override
