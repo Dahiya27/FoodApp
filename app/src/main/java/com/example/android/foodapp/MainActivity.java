@@ -1,6 +1,8 @@
 package com.example.android.foodapp;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -67,9 +69,28 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar actions click
         if(item.getItemId()==R.id.action_logout) {
-            FirebaseAuth.getInstance().signOut();
-            Toast.makeText(MainActivity.this, "You have logged out!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(MainActivity.this, StartActivity.class));
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to logout ?");
+
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(MainActivity.this, "You have logged out!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, StartActivity.class));
+finish();
+                }
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            builder.show();
+
         }
         return super.onOptionsItemSelected(item);
     }
