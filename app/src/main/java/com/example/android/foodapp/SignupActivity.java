@@ -55,36 +55,18 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 String txt_password = password.getText().toString();
                 String Name=name.getText().toString();
                 String txt_cpassword=cpassword.getText().toString();
-                if(TextUtils.isEmpty(Name)) {
-                    name.setError("Empty your name ");
-                    name.requestFocus();
-                }
-                else if(TextUtils.isEmpty(txt_emailid)) {
-                    emailid.setError("Enter EmailId");
-                    emailid.requestFocus();
-                }
-                else if(TextUtils.isEmpty(txt_password)) {
-                    password.setError("Enter password");
-                    password.requestFocus();
-                }
-                else if(txt_password.length() < 6){
+                if(TextUtils.isEmpty(txt_emailid) || TextUtils.isEmpty(txt_password)){
+                    Toast.makeText(SignupActivity.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
+                } else if(txt_password.length() < 6){
                     Toast.makeText(SignupActivity.this, "Password Too Short!", Toast.LENGTH_SHORT).show();
                 }else if(!txt_password.equals(txt_cpassword)) {
-                    cpassword.setError("Password did not Match");
-                    cpassword.requestFocus();
+                    Toast.makeText(SignupActivity.this,"Passwords do not match!",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     registerUser(txt_emailid, txt_password,Name);
                 }
             }
 
-        });
-        loginbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
-                finish();
-            }
         });
 
     }
