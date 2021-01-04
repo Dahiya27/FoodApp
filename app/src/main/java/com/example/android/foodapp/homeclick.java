@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class homeclick extends AppCompatActivity {
+public class  homeclick extends AppCompatActivity {
 
     ImageView img2;
     TextView t3,t4;

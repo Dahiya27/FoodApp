@@ -67,9 +67,11 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 if(password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
                     Show.setImageResource(R.drawable.hideeye);
                     password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    password.setSelection(password.getText().length());
                 } else {
                     Show.setImageResource(R.drawable.showeye);
                     password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    password.setSelection(password.getText().length());
                 }
             }
         });
@@ -79,9 +81,11 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 if(cpassword.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
                     Hide.setImageResource(R.drawable.hideeye);
                     cpassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    cpassword.setSelection(cpassword.getText().length());
                 } else {
                     Hide.setImageResource(R.drawable.showeye);
                     cpassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    cpassword.setSelection(cpassword.getText().length());
                 }
             }
         });

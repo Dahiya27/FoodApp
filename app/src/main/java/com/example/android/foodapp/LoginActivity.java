@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -50,15 +51,22 @@ public class LoginActivity extends AppCompatActivity {
         Show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 if(password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
                     Show.setImageResource(R.drawable.hideeye);
                     password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    password.setSelection(password.getText().length());
                 } else {
                     Show.setImageResource(R.drawable.showeye);
                     password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    password.setSelection(password.getText().length());
                 }
+
             }
         });
+
+
 
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
