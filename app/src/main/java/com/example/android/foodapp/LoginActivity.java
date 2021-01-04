@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView direct;
+    private TextView forgpass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +33,17 @@ public class LoginActivity extends AppCompatActivity {
         EditText password = (EditText) findViewById(R.id.password);
         Button login_button = (Button) findViewById(R.id.login_button);
         Button Show;
-
+        forgpass=(TextView)findViewById(R.id.forgotme);
         direct=findViewById(R.id.direct);
         Show=findViewById(R.id.show);
+
+        forgpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,passwordact.class));
+            }
+        });
+
         Show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,4 +100,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 }

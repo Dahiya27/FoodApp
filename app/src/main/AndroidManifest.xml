@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodApp">
-        <activity android:name=".homeclick"></activity>
+        <activity android:name=".passwordact"></activity>
+        <activity android:name=".homeclick" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
