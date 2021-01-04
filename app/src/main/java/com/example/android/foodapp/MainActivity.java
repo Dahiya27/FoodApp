@@ -6,16 +6,25 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -29,7 +38,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAG = "xyz";
     private AppBarConfiguration mAppBarConfiguration;
+
+    private FirebaseUser currentUser;
+    private DatabaseReference reference;
+    private String userid;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userid = currentUser.getUid();
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        Log.d(TAG, "updateNavHeader:"+currentUser.getDisplayName());
+        updateNavHeader();
     }
 
     @Override
@@ -78,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     FirebaseAuth.getInstance().signOut();
                     Toast.makeText(MainActivity.this, "You have logged out!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this, StartActivity.class));
-finish();
+                    finish();
                 }
             });
 
@@ -102,5 +125,37 @@ finish();
                 || super.onSupportNavigateUp();
     }
 
+    private void updateNavHeader() {
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+
+        TextView nav_username = headerView.findViewById(R.id.nav_username);
+        TextView nav_emailid = headerView.findViewById(R.id.nav_emailid);
+        TextView nav_state = headerView.findViewById(R.id.nav_state);
+
+        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+                if(userProfile!=null){
+                    String name = userProfile.fname;
+                    String email = userProfile.email;
+                    String state = userProfile.state;
+
+                    nav_username.setText(name);
+                    nav_emailid.setText(email);
+                    nav_state.setText(state);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Some error occured!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ImageView navImage = headerView.findViewById(R.id.nav_imageView);
+        // Glide.with(this).load(currentUser.getPhotoUrl()).into(navImage);
+    }
 
 }
