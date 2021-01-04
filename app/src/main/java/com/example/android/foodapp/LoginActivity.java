@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView direct;
     private TextView forgpass;
+    ImageView Show;
+    EditText password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         EditText emailid = (EditText) findViewById(R.id.emailid);
-        EditText password = (EditText) findViewById(R.id.password);
+         password =  findViewById(R.id.password);
         Button login_button = (Button) findViewById(R.id.login_button);
-        Button Show;
         forgpass=(TextView)findViewById(R.id.forgotme);
         direct=findViewById(R.id.direct);
         Show=findViewById(R.id.show);
@@ -47,12 +50,12 @@ public class LoginActivity extends AppCompatActivity {
         Show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Show.getText().toString().equals("Show")){
-                    Show.setText("Hide");
-                    password.setTransformationMethod(null);
+                if(password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                    Show.setImageResource(R.drawable.hideeye);
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 } else {
-                    Show.setText("Show");
-                    password.setTransformationMethod(new PasswordTransformationMethod());
+                    Show.setImageResource(R.drawable.showeye);
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
             }
         });
