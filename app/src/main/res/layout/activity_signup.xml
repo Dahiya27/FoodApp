@@ -57,23 +57,50 @@
         android:text="Password:"
         android:layout_margin="10dp" />
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:password="true"
-        android:id="@+id/password" />
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="textPassword"
+            android:hint="Enter password here"
+            android:id="@+id/password" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/show"
+            android:layout_marginLeft="15dp"
+            android:text="Show"/>
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Confirm Password"
         android:layout_margin="10dp"/>
-   <EditText
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/cpassword"
-       android:password="true"
-       android:layout_margin="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+       <EditText
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/cpassword"
+           android:hint="Enter password again"
+           android:inputType="textPassword"
+           android:layout_margin="10dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hide"
+            android:layout_marginLeft="15dp"
+            android:text="Show"/>
+
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"

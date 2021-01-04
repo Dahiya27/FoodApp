@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +51,35 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         EditText cpassword=(EditText) findViewById(R.id.cpassword);
         Button signup_button = (Button) findViewById(R.id.signup_button);
         TextView loginbtn = (TextView)findViewById(R.id.direct);
+        Button Show;
+        Button Hide;
+
+        Show=findViewById(R.id.show);
+        Hide=findViewById(R.id.hide);
+        Show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Show.getText().toString().equals("Show")){
+                    Show.setText("Hide");
+                    password.setTransformationMethod(null);
+                } else {
+                    Show.setText("Show");
+                    password.setTransformationMethod(new PasswordTransformationMethod());
+                }
+            }
+        });
+        Hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Hide.getText().toString().equals("Show")){
+                    Hide.setText("Hide");
+                    cpassword.setTransformationMethod(null);
+                } else {
+                    Hide.setText("Show");
+                    cpassword.setTransformationMethod(new PasswordTransformationMethod());
+                }
+            }
+        });
 
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override

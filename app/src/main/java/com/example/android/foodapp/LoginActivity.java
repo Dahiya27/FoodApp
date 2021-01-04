@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +31,23 @@ public class LoginActivity extends AppCompatActivity {
         EditText emailid = (EditText) findViewById(R.id.emailid);
         EditText password = (EditText) findViewById(R.id.password);
         Button login_button = (Button) findViewById(R.id.login_button);
+        Button Show;
+
         direct=findViewById(R.id.direct);
+        Show=findViewById(R.id.show);
+        Show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Show.getText().toString().equals("Show")){
+                    Show.setText("Hide");
+                    password.setTransformationMethod(null);
+                } else {
+                    Show.setText("Show");
+                    password.setTransformationMethod(new PasswordTransformationMethod());
+                }
+            }
+        });
+
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
