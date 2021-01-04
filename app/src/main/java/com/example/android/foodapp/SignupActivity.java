@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,6 +58,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 String txt_password = password.getText().toString();
                 String Name=name.getText().toString();
                 String txt_cpassword=cpassword.getText().toString();
+                String State = spinner.getSelectedItem().toString();
                 if(TextUtils.isEmpty(txt_emailid) || TextUtils.isEmpty(txt_password)){
                     Toast.makeText(SignupActivity.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
                 } else if(txt_password.length() < 6){
@@ -62,8 +66,11 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 }else if(!txt_password.equals(txt_cpassword)) {
                     Toast.makeText(SignupActivity.this,"Passwords do not match!",Toast.LENGTH_SHORT).show();
                 }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(txt_emailid).matches()){
+                    Toast.makeText(SignupActivity.this,"Please provide a valid email!",Toast.LENGTH_SHORT).show();
+                }
                 else {
-                    registerUser(txt_emailid, txt_password,Name);
+                    registerUser(txt_emailid, txt_password, Name, State);
                 }
             }
 
@@ -71,17 +78,30 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
 
     }
 
-    private void registerUser(String emailid,  String password,String Name){
+    private void registerUser(String emailid,  String password, String Name, String State){
         mAuth.createUserWithEmailAndPassword(emailid, password).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(SignupActivity.this, "congratulations "+Name+" .Your Signup is successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SignupActivity.this, MainActivity.class));
-                    finish();
+                    User user = new User(Name, emailid);
+                    FirebaseDatabase.getInstance().getReference("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(SignupActivity.this, "Congratulations "+Name+" .Your Signup is successful!", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                                finish();
+                            }
+                            else {
+                                Toast.makeText(SignupActivity.this, "Failed to register! Please try again!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
                 else {
-                    Toast.makeText(SignupActivity.this, "Sorry "+Name+". this Email is already used!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivity.this, "Failed to register! Please try again!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
