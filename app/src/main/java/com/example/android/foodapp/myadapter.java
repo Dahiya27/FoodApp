@@ -7,9 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.android.foodapp.ui.home.shops;
 
 import java.util.ArrayList;
 
@@ -39,6 +42,18 @@ public class myadapter extends RecyclerView.Adapter<vHolder> implements Filterab
         holder.t1.setText(data.get(position).getHeader());
         holder.t2.setText(data.get(position).getDesc());
         holder.img.setImageResource(data.get(position).getImgName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Do on click stuff
+                Toast.makeText(context, " something is better ", Toast.LENGTH_LONG).show();
+                Intent intent= new Intent(context, shops.class);
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
+
         holder.img.setOnClickListener((v) -> {
             Intent intent = new Intent(context,homeclick.class);
             intent.putExtra("ImageName",temp.getImgName());

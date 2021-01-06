@@ -40,6 +40,22 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:22.0.1'
     implementation 'androidx.navigation:navigation-fragment:2.3.2'
     implementation 'androidx.navigation:navigation-ui:2.3.2'
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    implementation 'com.google.firebase:firebase-storage:19.2.1'
+   // implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.firebase:firebase-auth:20.0.1'
+    implementation 'com.firebaseui:firebase-ui-database:6.2.0'
+    implementation 'com.google.firebase:firebase-firestore:22.0.1'
+    implementation 'com.google.firebase:firebase-core:18.0.0'
+   // implementation 'com.google.firebase:firebase-admin:7.1.0'
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
+    implementation 'com.google.firebase:firebase-dynamic-links'
+    implementation 'com.google.firebase:firebase-analytics'
+
+
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
