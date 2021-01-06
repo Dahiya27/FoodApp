@@ -32,6 +32,12 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
     ImageView Hide;
     EditText password;
     EditText cpassword;
+    int score = 0;
+    boolean upper = false;
+    boolean lower = false;
+    boolean digit = false;
+    boolean specialChar = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +104,32 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 String Name=name.getText().toString();
                 String txt_cpassword=cpassword.getText().toString();
                 String State = spinner.getSelectedItem().toString();
+                for (int i = 0; i < txt_password.length(); i++) {
+                    char c = txt_password.charAt(i);
+
+                    if (!specialChar && !Character.isLetterOrDigit(c)) {
+                        score++;
+                        specialChar = true;
+                    } else {
+                        if (!digit && Character.isDigit(c)) {
+                            score++;
+                            digit = true;
+                        } else {
+                            if (!upper || !lower) {
+                                if (Character.isUpperCase(c)) {
+                                    upper = true;
+                                } else {
+                                    lower = true;
+                                }
+
+                                if (upper && lower) {
+                                    score++;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 if(TextUtils.isEmpty(txt_emailid) || TextUtils.isEmpty(txt_password)){
                     Toast.makeText(SignupActivity.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
                 } else if(txt_password.length() < 6){
@@ -108,9 +140,23 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 else if(!Patterns.EMAIL_ADDRESS.matcher(txt_emailid).matches()){
                     Toast.makeText(SignupActivity.this,"Please provide a valid email!",Toast.LENGTH_SHORT).show();
                 }
-                else {
-                    registerUser(txt_emailid, txt_password, Name, State);
+                else if (score <= 1 && txt_password.length() > 6) {
+                    Toast.makeText(getApplicationContext(), "password is weak try another,add uppercase or special character", Toast.LENGTH_SHORT).show();
                 }
+                else if(txt_password.equals(txt_cpassword)){
+                    if (score == 2) {
+                        Toast.makeText(getApplicationContext(), "Medium password", Toast.LENGTH_SHORT).show();
+                        registerUser(txt_emailid, txt_password, Name,State);
+                    } else if (score == 3) {
+                        Toast.makeText(getApplicationContext(), "Strong password", Toast.LENGTH_SHORT).show();
+                        registerUser(txt_emailid, txt_password, Name,State);
+                    }
+                    else if(score==4){
+                        Toast.makeText(getApplicationContext(), "Very Strong password", Toast.LENGTH_SHORT).show();
+                        registerUser(txt_emailid, txt_password, Name,State);
+                    }
+                }
+
             }
 
         });
