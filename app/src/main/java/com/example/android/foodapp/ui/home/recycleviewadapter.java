@@ -56,7 +56,7 @@ public class recycleviewadapter extends RecyclerView.Adapter<recycleviewadapter.
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             TextView  ttitl= (TextView) itemView.findViewById(R.id.tvTitle);
-             //Log.w("one more","  "+ttitl.setText("ashish"));
+             //Log.w("one more","  "+ttitl.setText("assh"));
             ttitl.setText("check code in recyleviewapdapter.java..");
 
             ImageView mimg= (ImageView) itemView.findViewById(R.id.ivshop);
