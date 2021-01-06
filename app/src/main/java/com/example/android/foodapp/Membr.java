@@ -15,7 +15,7 @@ public class Membr {
     public String getImage() {
         return image;
     }
-
+// jjjjj
     public void setImage(String image) {
         this.image = image;
     }
