@@ -47,7 +47,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
 public class shops extends AppCompatActivity {
-
+///hhh
     RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     FirebaseDatabase firebaseDatabase;
