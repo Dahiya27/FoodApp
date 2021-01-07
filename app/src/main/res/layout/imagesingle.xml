@@ -3,23 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/clist"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    app:cardCornerRadius="10dp"
-    android:layout_marginTop="10dp"
-    android:background="@color/teal_200"
+    android:layout_height="364dp"
+    app:cardCornerRadius="15dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="3dp"
+    android:background="@color/black"
     app:cardUseCompatPadding="true">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_200">
-
-        <ImageView
-            android:id="@+id/ivshop"
-            android:layout_width="80dp"
-            android:layout_marginLeft="10dp"
-            android:layout_height="90dp"
-            android:src="@drawable/icon" />
+        android:background="#ff008d"
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/tvTitle"
@@ -31,7 +27,18 @@
             android:text="Header"
             android:textColor="#000"
             android:textSize="25dp"
+            android:paddingBottom="5dp"
+            android:gravity="center"
             android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/ivshop"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_height="260dp"
+            android:paddingBottom="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon" />
 
         <TextView
             android:id="@+id/tvType"
@@ -41,10 +48,20 @@
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/ivshop"
             android:text="Header"
+            android:gravity="center"
+            android:paddingBottom="5dp"
             android:textSize="20dp" />
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:outlineSpotShadowColor="@color/design_default_color_primary"
+            android:background="?android:attr/listDivider" />
 
 
-    </RelativeLayout>
+    </LinearLayout>
+
+
 
 
 </androidx.cardview.widget.CardView>

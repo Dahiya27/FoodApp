@@ -48,6 +48,7 @@ public class myadapter extends RecyclerView.Adapter<vHolder> implements Filterab
                 //Do on click stuff
                 Toast.makeText(context, " something is better ", Toast.LENGTH_LONG).show();
                 Intent intent= new Intent(context, shops.class);
+                intent.putExtra("id",holder.t1.getText().toString());
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);

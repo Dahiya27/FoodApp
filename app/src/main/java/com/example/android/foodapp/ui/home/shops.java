@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -70,8 +71,8 @@ public class shops extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-
-
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("id");
         //Ashish path firebase database
 
         userPhotoRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -85,10 +86,15 @@ public class shops extends AppCompatActivity {
                         if(document.exists())
                         {
                             Membr photo=document.toObject(Membr.class);
-                            list.add(photo);
+
+                           // Log.w("type","  "+photo.getType()+" I did this "+id+" "+id.equals(photo.getType()));
+
+                        boolean f;//=id.equals(photo.getType());
+                     f=id.charAt(2)==photo.getType().toString().charAt(2);
+                           if(f) { list.add(photo);}
                         }
                         // Do what you need to do with your list
-                       Log.w("bro"," "+list.get(0).getTitle()+"   "+list.get(0).getImage());
+//                       Log.w("bro"," "+list.get(0).getTitle()+"   "+list.get(0).getImage());
                         mAdapter= new recycleviewadapter(list,shops.this);
                         mRecyclerView.setAdapter(mAdapter);
                     }
