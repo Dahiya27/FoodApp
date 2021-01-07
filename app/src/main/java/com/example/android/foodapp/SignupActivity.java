@@ -32,6 +32,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
     ImageView Hide;
     EditText password;
     EditText cpassword;
+    TextView loginbtn;
     int score = 0;
     boolean upper = false;
     boolean lower = false;
@@ -160,7 +161,13 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
             }
 
         });
-
+        loginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                finish();
+            }
+        });
     }
 
     private void registerUser(String emailid,  String password, String Name, String State){
@@ -203,4 +210,5 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
 }
