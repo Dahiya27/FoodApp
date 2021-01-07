@@ -1,22 +1,41 @@
 package com.example.android.foodapp;
 
-public class Membr {
-    String title,image;
-    public  Membr(){}
+public class Membr  {
 
-    public String getTitle() {
-        return title;
+    String Title,Type,Image;
+
+    Membr(){
+
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Membr(String title, String type, String image) {
+        this.Title=title;
+        this.Type=type;
+        this.Image=image;
+    }
+
+    public String getTitle() {
+        return Title;
     }
 
     public String getImage() {
-        return image;
+        return Image;
     }
-// jjjjj
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
     public void setImage(String image) {
-        this.image = image;
+        Image = image;
     }
+
+    public void setType(String type) {
+        Type = type;
+    }
+
 }

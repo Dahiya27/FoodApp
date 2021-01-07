@@ -38,29 +38,32 @@ public class recycleviewadapter extends RecyclerView.Adapter<recycleviewadapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-       // holder.ttitle.setText(ar.get(position).getTitle());
-        String th="thishsh is ashish";
-     //   holder.ttitl.setText(th);
-        Log.w("ha ha","here  "+ar.get(0).getTitle());
-        //Glide.with(this.context).load(ar.get(position).getImage()).into(holder.mimg);
+        holder.ttitl.setText(ar.get(position).getTitle());
+        holder.ttype.setText(ar.get(position).getType());
+        //String th="thishsh is ashish";
+     // holder.ttitl.setText(th);
+        //Log.w("ha ha","here  "+ar.get(0).getTitle());
+        Glide.with(this.context).load(ar.get(position).getImage()).into(holder.mimg);
     }
 
     @Override
     public int getItemCount() {
         return ar.size() ;
     }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
-       public TextView ttitl;
+       public TextView ttitl,ttype;
        public ImageView mimg;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            TextView  ttitl= (TextView) itemView.findViewById(R.id.tvTitle);
+             ttitl= (TextView) itemView.findViewById(R.id.tvTitle);
+             ttype= (TextView) itemView.findViewById(R.id.tvType);
              //Log.w("one more","  "+ttitl.setText("assh"));
-            ttitl.setText("check code in recyleviewapdapter.java..");
+          //  ttitl.setText("check code in recyleviewapdapter.java..");
 
-            ImageView mimg= (ImageView) itemView.findViewById(R.id.ivshop);
-            Glide.with(context).load(ar.get(0).getImage()).into(mimg);
+             mimg= (ImageView) itemView.findViewById(R.id.ivshop);
+            //Glide.with(context).load(ar.get(0).getImage()).into(mimg);
         }
     }
 

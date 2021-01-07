@@ -53,7 +53,7 @@ public class shops extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
     FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
-    CollectionReference userPhotoRef = rootRef.collection("data");
+    CollectionReference userPhotoRef = rootRef.collection("Restaurants");
 
     //private  final Firestore db;
     //CollectionReference cities = db.collection("data");
@@ -95,7 +95,6 @@ public class shops extends AppCompatActivity {
                 }
             }
         });
-
 
 
 
