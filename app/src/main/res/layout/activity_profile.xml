@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="35dp"
+    android:background="@color/cardview_dark_background"
+    android:gravity="center"
+    android:fitsSystemWindows="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="3dp"
+            android:background="@color/white"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            tools:context=".ProfileFragment"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:textAlignment="center"
+                android:fontFamily="@string/appbar_scrolling_view_behavior"
+                android:gravity="center_horizontal"
+                android:layout_margin="10dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardCornerRadius="75dp"
+                    android:layout_marginBottom="30dp">
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/image"
+                        android:clickable="true"
+
+                        android:background="@drawable/burger__fastfood__food__hamburger__junkfood__beef__drink_512"
+                        android:scaleType="fitCenter"/>
+
+
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+
+                    android:text="Edit"
+                    app:iconSize="70dp"
+                    app:iconPadding="24dp"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:background="@color/black"
+                    android:layout_alignParentRight="true" />
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text= "NAME"
+                style="@style/RegularMono"
+                android:textSize="@dimen/fab_margin"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:layout_marginRight="0dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="0dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/et_name_cp"
+                android:textColor="@color/purple_700"
+                android:layout_marginTop="10dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/name"
+                android:textColor="@color/purple_700"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text= "EMAIL"
+                style="@style/RegularMono"
+                android:textSize="@dimen/fab_margin"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:padding="5dp"
+                android:layout_marginRight="0dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="0dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple_700"
+                android:padding="5dp"
+                android:id="@+id/et_Email_cp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text= "STATE"
+                style="@style/RegularMono"
+                android:textSize="@dimen/fab_margin"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:padding="5dp"
+                android:layout_marginRight="0dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="0dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple_700"
+                android:id="@+id/state"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"/>
+            <Spinner
+                android:id="@+id/pstate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                android:prompt="@string/spinner_title" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text= "GENDER"
+                style="@style/RegularMono"
+                android:textSize="@dimen/fab_margin"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:padding="5dp"
+                android:layout_marginRight="0dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="0dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+            android:id="@+id/gender"
+                android:textColor="@color/purple_700"
+            android:layout_marginTop="10dp"/>
+            <Spinner
+                android:id="@+id/gndr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                android:prompt="@string/spinner_title" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text= "DESCRIPTION"
+                style="@style/RegularMono"
+                android:textSize="@dimen/fab_margin"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:padding="5dp"
+                android:layout_marginRight="0dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="0dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Desc"
+                android:textColor="@color/purple_700"
+                android:layout_marginTop="10dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple_700"
+                android:id="@+id/description"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text= "ADDRESS"
+                style="@style/RegularMono"
+                android:textSize="@dimen/fab_margin"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:padding="5dp"
+                android:layout_marginRight="0dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="0dp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/locate"
+                android:text="Locate"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/address"
+                android:layout_margin="10dp"
+                android:textColor="@color/purple_700"
+                android:layout_marginTop="10dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Profile"
+                android:layout_margin="20dp"
+                android:id="@+id/updateButton"/>
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

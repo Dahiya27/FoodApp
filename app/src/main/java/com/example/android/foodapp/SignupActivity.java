@@ -17,17 +17,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SignupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private FirebaseAuth mAuth;
+    private FirebaseFirestore fstore;
+
     ImageView Show;
     ImageView Hide;
     EditText password;
@@ -46,9 +53,15 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_signup);
         mAuth = FirebaseAuth.getInstance();
         Spinner spinner=(Spinner) findViewById(R.id.spinner);
+Spinner Gender=(Spinner)findViewById(R.id.gender);
+
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,R.array.genders,android.R.layout.simple_spinner_item);
 
 
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        Gender.setAdapter(adapter1);
+        Gender.setOnItemSelectedListener(this);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.numbers,android.R.layout.simple_spinner_item);
 
@@ -60,10 +73,12 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
 
         EditText name=(EditText)findViewById(R.id.name);
         EditText emailid = (EditText) findViewById(R.id.emailid);
+        fstore=FirebaseFirestore.getInstance();
          password =  findViewById(R.id.password);
          cpassword= findViewById(R.id.cpassword);
         Button signup_button = (Button) findViewById(R.id.signup_button);
         TextView loginbtn = (TextView)findViewById(R.id.direct);
+
 
 
         Show=findViewById(R.id.show);
@@ -103,8 +118,12 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 String txt_emailid = emailid.getText().toString();
                 String txt_password = password.getText().toString();
                 String Name=name.getText().toString();
+                int State=spinner.getSelectedItemPosition();
+                String state=spinner.getSelectedItem().toString();
+                String pGender=Gender.getSelectedItem().toString();
                 String txt_cpassword=cpassword.getText().toString();
-                String State = spinner.getSelectedItem().toString();
+
+                int gender=Gender.getSelectedItemPosition();
                 for (int i = 0; i < txt_password.length(); i++) {
                     char c = txt_password.charAt(i);
 
@@ -147,14 +166,17 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                 else if(txt_password.equals(txt_cpassword)){
                     if (score == 2) {
                         Toast.makeText(getApplicationContext(), "Medium password", Toast.LENGTH_SHORT).show();
-                        registerUser(txt_emailid, txt_password, Name,State);
+                        registerUser(txt_emailid, txt_password, Name,state,State,gender,pGender);
+
                     } else if (score == 3) {
                         Toast.makeText(getApplicationContext(), "Strong password", Toast.LENGTH_SHORT).show();
-                        registerUser(txt_emailid, txt_password, Name,State);
+                        registerUser(txt_emailid, txt_password, Name,state,State,gender,pGender);
+
                     }
                     else if(score==4){
                         Toast.makeText(getApplicationContext(), "Very Strong password", Toast.LENGTH_SHORT).show();
-                        registerUser(txt_emailid, txt_password, Name,State);
+                        registerUser(txt_emailid, txt_password, Name,state,State,gender,pGender);
+
                     }
                 }
 
@@ -170,7 +192,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
-    private void registerUser(String emailid,  String password, String Name, String State){
+    private void registerUser(String emailid,  String password, String Name, String  State,int state,int gender,String Gender){
         mAuth.createUserWithEmailAndPassword(emailid, password).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -183,8 +205,8 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(SignupActivity.this, "Congratulations "+Name+" .Your Signup is successful!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(SignupActivity.this, MainActivity.class));
-                                finish();
+                                addUser(Name,emailid,state,gender,State,Gender);
+
                             }
                             else {
                                 Toast.makeText(SignupActivity.this, "Failed to register! Please try again!", Toast.LENGTH_SHORT).show();
@@ -209,6 +231,28 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+    private void addUser(String name,String email,int state,int gender,String State,String Gender){
+String id=mAuth.getCurrentUser().getUid().toString();
+Map<String,Object> doc = new HashMap<>();
+doc.put("Id",id);
+doc.put("FullName",name);
+doc.put("Email",email);
+doc.put("State",state);
+doc.put("gender",gender);
+doc.put("stateName",State);
+doc.put("genderType",Gender);
+doc.put("Description","noDescription");
+doc.put("image","noImage");
+doc.put("Address","noAddress");
+
+fstore.collection("users").document(id).set(doc).addOnSuccessListener(new OnSuccessListener<Void>() {
+    @Override
+    public void onSuccess(Void avoid) {
+startActivity(new Intent(getApplicationContext(),MainActivity.class));
+finish();
+    }
+});
     }
 
 }

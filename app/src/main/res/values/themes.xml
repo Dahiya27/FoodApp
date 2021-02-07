@@ -22,4 +22,10 @@
     <style name="Theme.FoodApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.FoodApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="RegularMono">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:text">mono space</item>
+    </style>
 </resources>

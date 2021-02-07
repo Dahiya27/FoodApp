@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -25,8 +26,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -45,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private String userid;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore fstore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userid = currentUser.getUid();
+        fstore=FirebaseFirestore.getInstance()""
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +76,29 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View header=navigationView.getHeaderView(0);
+        ImageView navImage=(ImageView)header.findViewById(R.id.nav_imageView);
+        navImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,profileActivity.class));
+                drawer.closeDrawers();
+            }
+        });
+        String id=mAuth.getCurrentUser().getUid();
+        fstore.collection("users").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String url=documentSnapshot.getString("image");
+                if(url.equals("noImage")){
+                    navImage.setImageResource(R.drawable.burger__fastfood__food__hamburger__junkfood__beef__drink_512);
+                }
+                else{
+                    Picasso.get().load(url).into(navImage);
+                }
+            }
+        });
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -90,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Handle action bar actions click
         if(item.getItemId()==R.id.action_logout) {
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
@@ -154,7 +186,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageView navImage = headerView.findViewById(R.id.nav_imageView);
+
+
         // Glide.with(this).load(currentUser.getPhotoUrl()).into(navImage);
     }
 
