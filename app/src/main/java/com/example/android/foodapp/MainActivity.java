@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userid = currentUser.getUid();
-        fstore=FirebaseFirestore.getInstance()""
+        fstore=FirebaseFirestore.getInstance();
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
