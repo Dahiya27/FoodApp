@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,8 @@ import java.util.List;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
+import org.w3c.dom.Document;
+
 public class shops extends AppCompatActivity {
 ///hhh
     RecyclerView mRecyclerView;
@@ -64,7 +67,7 @@ public class shops extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shops);
-
+//userPhotoRef.document().collection("");
         mRecyclerView = findViewById(R.id.recycl);
         mRecyclerView.setHasFixedSize(true);
 
@@ -80,18 +83,23 @@ public class shops extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful())
                 {
-                    ArrayList<Membr>list = new ArrayList<>();
+                    ArrayList<Pair<Membr,DocumentReference>>list = new ArrayList<>();
                     for(QueryDocumentSnapshot document : task.getResult())
                     {
+                        //Log.w(document.getId(),"  Real Id se aa zukku ! ");
+
+
+
                         if(document.exists())
                         {
+                            DocumentReference menu_child = document.getReference();
                             Membr photo=document.toObject(Membr.class);
 
                            // Log.w("type","  "+photo.getType()+" I did this "+id+" "+id.equals(photo.getType()));
 
                         boolean f;//=id.equals(photo.getType());
                      f=id.charAt(2)==photo.getType().toString().charAt(2);
-                           if(f) { list.add(photo);}
+                           if(f) { list.add(  new Pair<Membr,DocumentReference>(photo,menu_child)  );}
                         }
                         // Do what you need to do with your list
 //                       Log.w("bro"," "+list.get(0).getTitle()+"   "+list.get(0).getImage());
