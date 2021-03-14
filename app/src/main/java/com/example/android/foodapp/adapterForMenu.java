@@ -6,6 +6,7 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,12 +31,15 @@ public class adapterForMenu extends RecyclerView.Adapter<adapterForMenu.MyViewHo
         this.context = context;
     }
 
+    //int quantity=0;
+
+
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // change krna hai imagesingle ko
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.imagesingle, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_tiles, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
 
         return holder;
@@ -46,10 +50,20 @@ public class adapterForMenu extends RecyclerView.Adapter<adapterForMenu.MyViewHo
         holder.ttitl.setText(ar.get(position).getTitle());
         holder.ttype.setText(ar.get(position).getType());
 
-        //String th="thishsh is ashish";
-        // holder.ttitl.setText(th);
-        //Log.w("ha ha","here  "+ar.get(0).getTitle());
+        holder.pb.setOnClickListener(v -> {
+            int q=Integer.parseInt((String) holder.vval.getText());
+            q=q+1;
+            holder.vval.setText(String.valueOf(q));
+        });
+        holder.mb.setOnClickListener(v -> {
+            int q=Integer.parseInt((String) holder.vval.getText());
+            if(q>0) q=q-1;
+            holder.vval.setText(String.valueOf(q));
+        });
+
         Glide.with(this.context).load(ar.get(position).getImage()).into(holder.mimg);
+
+
         /*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,17 +90,31 @@ public class adapterForMenu extends RecyclerView.Adapter<adapterForMenu.MyViewHo
         return ar.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView ttitl, ttype;
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView ttitl, ttype, vval;
         public ImageView mimg;
+        public Button pb,mb;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             // id name bdlna hai
-            ttitl = (TextView) itemView.findViewById(R.id.tvTitle);
-            ttype = (TextView) itemView.findViewById(R.id.tvType);
+            vval = (TextView) itemView.findViewById(R.id.quantity_text_view);
+            ttitl = (TextView) itemView.findViewById(R.id.menu_t1);
+            ttype = (TextView) itemView.findViewById(R.id.menu_t2);
+            mimg = (ImageView) itemView.findViewById(R.id.menu_img1);
+            pb = (Button) itemView.findViewById(R.id.plus);
+            mb = (Button) itemView.findViewById(R.id.minus);
+//            itemView.findViewById(R.id.plus).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
+        }
 
-            mimg = (ImageView) itemView.findViewById(R.id.ivshop);
+        @Override
+        public void onClick(View v) {
+
         }
     }
 }

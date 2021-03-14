@@ -6,12 +6,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".food_menu_per_restro">
-    <androidx.recyclerview.widget.RecyclerView
+    tools:context=".food_menu_per_restro"
+    android:orientation="vertical">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="550dp">
 
-        android:id="@+id/menu_recylcer"
-        />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/menu_recylcer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2" >
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/cartbutton"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/paymentbutton"
+            android:layout_alignParentBottom="true"
+            android:text="Add to Cart"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/paymentbutton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="Proceed to Payment"/>
+        </TableRow>
+    </RelativeLayout>
 
 </LinearLayout>
