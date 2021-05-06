@@ -29,11 +29,11 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:id="@+id/cartbutton"
+            android:id="@+id/viewcartbutton"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/paymentbutton"
             android:layout_alignParentBottom="true"
-            android:text="Add to Cart"/>
+            android:text="View Cart"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"

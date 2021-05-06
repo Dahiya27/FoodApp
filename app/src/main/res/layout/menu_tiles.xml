@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/clist"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="150dp"
     app:cardCornerRadius="10dp"
     android:orientation="horizontal"
     android:layout_marginTop="10dp"
@@ -55,15 +55,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentLeft="true">
 
         <Button
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="8dp"
             android:text="+"
-            android:id="@+id/plus"
-            android:layout_marginStart="16dp" />
+            android:id="@+id/plus" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,10 +79,27 @@
             android:layout_height="48dp"
             android:layout_marginLeft="8dp"
             android:id="@+id/minus"
-            android:layout_marginBottom="16dp"
             android:text="-" />
 
     </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Add to Cart"
+                android:layout_marginRight="8dp"
+                android:id="@+id/add_to_cart_button"
+                />
+
+        </LinearLayout>
+
+
     </RelativeLayout>
 
 
