@@ -63,7 +63,7 @@ public class recycleviewadapter extends RecyclerView.Adapter<recycleviewadapter.
             @Override
             public void onClick(View v) {
                 //Do on click stuff
-                Toast.makeText(context, " Ashish is hero! ", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, " Ashish is betichod! ", Toast.LENGTH_LONG).show();
 
                 Intent intent= new Intent(context, food_menu_per_restro.class );
                // intent.putExtra("id",holder.t1.getText().toString());

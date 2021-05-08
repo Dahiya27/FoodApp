@@ -7,25 +7,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
+import android.view.View;
+import android.widget.Button;
 
-import com.example.android.foodapp.ui.home.recycleviewadapter;
-import com.example.android.foodapp.ui.home.shops;
+import com.example.android.foodapp.ui.home.viewcart;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class food_menu_per_restro extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    private Button ViewCart;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -34,12 +33,16 @@ public class food_menu_per_restro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_menu_per_restro);
         Intent intent=getIntent();
-
+ViewCart=findViewById(R.id.viewcartbutton);
         mRecyclerView = findViewById(R.id.menu_recylcer);
         mRecyclerView.setHasFixedSize(true);
-
+ViewCart.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(food_menu_per_restro.this, viewcart.class));
+    }
+});
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         String refer = intent.getStringExtra("referRestro");
 
         CollectionReference userRef = db.document(refer).collection("foodmenu");

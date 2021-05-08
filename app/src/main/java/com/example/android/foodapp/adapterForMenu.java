@@ -1,8 +1,6 @@
 package com.example.android.foodapp;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +13,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.android.foodapp.ui.home.recycleviewadapter;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class adapterForMenu extends RecyclerView.Adapter<adapterForMenu.MyViewHolder> {
 
     ArrayList<Membr> ar;
+    private FirebaseFirestore fstore=FirebaseFirestore.getInstance();
+    private FirebaseAuth fauth=FirebaseAuth.getInstance();
+
     Context context;
 
     public adapterForMenu(ArrayList<Membr> ar, Context context) {
@@ -50,17 +57,29 @@ public class adapterForMenu extends RecyclerView.Adapter<adapterForMenu.MyViewHo
         holder.ttitl.setText(ar.get(position).getTitle());
         holder.ttype.setText(ar.get(position).getType());
 
-        holder.pb.setOnClickListener(v -> {
-            int q=Integer.parseInt((String) holder.vval.getText());
-            q=q+1;
-            holder.vval.setText(String.valueOf(q));
-        });
-        holder.mb.setOnClickListener(v -> {
-            int q=Integer.parseInt((String) holder.vval.getText());
-            if(q>0) q=q-1;
-            holder.vval.setText(String.valueOf(q));
-        });
 
+holder.addtocart.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Map<String,Object>a=new HashMap<>();
+        a.put("dishname",holder.ttitl.getText().toString());
+        a.put("price",holder.ttype.getText().toString());
+        a.put("quantity","1");
+        fstore.collection("users").document(fauth.getCurrentUser().getUid()).update("total","0");
+
+        fstore.collection("users").document(fauth.getCurrentUser().getUid()).collection("dishes").document(holder.ttitl.getText().toString()).set(a).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull @NotNull Exception e) {
+                Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_LONG ).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+
+            }
+        });
+    }
+});
         Glide.with(this.context).load(ar.get(position).getImage()).into(holder.mimg);
 
 
@@ -93,17 +112,15 @@ public class adapterForMenu extends RecyclerView.Adapter<adapterForMenu.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView ttitl, ttype, vval;
         public ImageView mimg;
-        public Button pb,mb;
+        public Button pb,mb,addtocart;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             // id name bdlna hai
-            vval = (TextView) itemView.findViewById(R.id.quantity_text_view);
             ttitl = (TextView) itemView.findViewById(R.id.menu_t1);
             ttype = (TextView) itemView.findViewById(R.id.menu_t2);
             mimg = (ImageView) itemView.findViewById(R.id.menu_img1);
-            pb = (Button) itemView.findViewById(R.id.plus);
-            mb = (Button) itemView.findViewById(R.id.minus);
+            addtocart=itemView.findViewById(R.id.add_to_cart_button);
 //            itemView.findViewById(R.id.plus).setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {

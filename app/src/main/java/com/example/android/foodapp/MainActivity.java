@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         fstore.collection("users").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
                 String url=documentSnapshot.getString("image");
                 if(url.equals("noImage")){
                     navImage.setImageResource(R.drawable.burger__fastfood__food__hamburger__junkfood__beef__drink_512);
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     Picasso.get().load(url).into(navImage);
                 }
-            }
+            }}
         });
 
         // Passing each menu ID as a set of Ids because each

@@ -15,7 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodApp">
-        <activity android:name=".food_menu_per_restro"></activity>
+        <activity
+            android:name=".ui.home.viewcart"
+            android:label="@string/title_activity_viewcart"
+            android:theme="@style/Theme.FoodApp.NoActionBar"></activity>
+        <activity android:name=".food_menu_per_restro" />
         <activity android:name=".profileActivity" />
         <activity android:name=".ui.home.shops" />
         <activity android:name=".passwordact" />
