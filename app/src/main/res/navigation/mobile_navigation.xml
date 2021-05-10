@@ -11,10 +11,11 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
+    <activity
         android:id="@+id/nav_cart"
-        android:name="com.example.android.foodapp.ui.home.cartfragment"
+        android:name="com.example.android.foodapp.ui.home.viewcart"
         android:label="Cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/activity_viewcart" />
+
 
 </navigation>
