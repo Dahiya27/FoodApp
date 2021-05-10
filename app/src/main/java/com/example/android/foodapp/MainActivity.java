@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.foodapp.ui.home.HomeFragment;
+import com.example.android.foodapp.ui.home.cartfragment;
+import com.example.android.foodapp.ui.home.viewcart;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,8 +34,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
+import androidx.customview.widget.Openable;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -40,6 +46,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     private String userid;
     private FirebaseAuth mAuth;
     private FirebaseFirestore fstore;
+    DrawerLayout drawer;
+    NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         View header=navigationView.getHeaderView(0);
         ImageView navImage=(ImageView)header.findViewById(R.id.nav_imageView);
@@ -99,18 +109,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }}
         });
-
+navigationView.bringToFront();
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_cart)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-        Log.d(TAG, "updateNavHeader:"+currentUser.getDisplayName());
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+       NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+       NavigationUI.setupWithNavController(navigationView, navController);
+       Log.d(TAG, "updateNavHeader:"+currentUser.getDisplayName());
         updateNavHeader();
+
     }
 
     @Override
@@ -150,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

@@ -13,8 +13,8 @@
 
     <fragment
         android:id="@+id/nav_cart"
-        android:name="com.example.android.foodapp.ui.Cart"
+        android:name="com.example.android.foodapp.ui.home.cartfragment"
         android:label="Cart"
-        tools:layout="@layout/cart_fragment" />
+        tools:layout="@layout/fragment_cart" />
 
 </navigation>

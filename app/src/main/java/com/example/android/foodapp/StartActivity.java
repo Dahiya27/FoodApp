@@ -62,7 +62,7 @@ public class StartActivity extends AppCompatActivity {
                 }
             });
 
-
+fstore.collection("users").document(fauth.getCurrentUser().getUid()).update("total","0");
 
             startActivity(new Intent(StartActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
         }
