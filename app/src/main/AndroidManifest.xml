@@ -15,10 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodApp">
+        <activity android:name=".activity_splashscreen">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.home.viewcart"
             android:label="@string/title_activity_viewcart"
-            android:theme="@style/Theme.FoodApp.NoActionBar"></activity>
+            android:theme="@style/Theme.FoodApp.NoActionBar" />
         <activity android:name=".food_menu_per_restro" />
         <activity android:name=".profileActivity" />
         <activity android:name=".ui.home.shops" />
@@ -35,11 +43,7 @@
             android:name=".LoginActivity"
             android:label="Login" />
         <activity android:name=".StartActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
