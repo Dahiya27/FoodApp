@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="364dp"
     app:cardCornerRadius="15dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="5dp"
     android:layout_marginTop="3dp"
     android:background="@color/black"
     app:cardUseCompatPadding="true">
@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ff008d"
+        android:background="@color/Blue"
         android:orientation="vertical"
         >
 
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="2dp"
             android:layout_toRightOf="@+id/ivshop"
             android:text="Header"
             android:textColor="#000"
@@ -30,14 +30,16 @@
             android:paddingBottom="5dp"
             android:gravity="center"
             android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/ivshop"
-            android:layout_width="wrap_content"
+            android:layout_width="360dp"
+            android:layout_height="261dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
-            android:layout_height="260dp"
             android:paddingBottom="4dp"
             android:scaleType="centerCrop"
+            android:layout_gravity="center"
             android:src="@drawable/icon" />
 
         <TextView
@@ -45,11 +47,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTitle"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="2dp"
             android:layout_toRightOf="@+id/ivshop"
             android:text="Header"
             android:gravity="center"
-            android:paddingBottom="5dp"
+            android:paddingBottom="8dp"
             android:textSize="20dp" />
         <View
             android:id="@+id/divider2"

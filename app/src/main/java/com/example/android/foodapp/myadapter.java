@@ -46,7 +46,7 @@ public class myadapter extends RecyclerView.Adapter<vHolder> implements Filterab
             @Override
             public void onClick(View v) {
                 //Do on click stuff
-                Toast.makeText(context, " Ashish bhai zindabaad! ", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, " Shop Names ", Toast.LENGTH_LONG).show();
                 Intent intent= new Intent(context, shops.class);
                 intent.putExtra("id",holder.t1.getText().toString());
 
