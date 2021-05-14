@@ -7,7 +7,9 @@
     app:cardCornerRadius="10dp"
     android:orientation="horizontal"
     android:layout_marginTop="10dp"
-    android:background="@color/teal_200"
+
+
+    android:background="@color/purple_200"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
@@ -19,11 +21,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/rel1">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/menu_img1"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_marginLeft="10dp"
-            android:layout_height="90dp"
+            android:layout_height="110dp"
             android:src="@drawable/icon" />
 
         <TextView

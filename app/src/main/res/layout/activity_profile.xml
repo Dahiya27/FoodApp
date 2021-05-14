@@ -68,7 +68,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn"
-                    android:layout_width="48dp"
+                    android:layout_width="70dp"
                     android:layout_height="48dp"
 
                     android:text="Edit"
@@ -177,9 +177,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-            android:id="@+id/gender"
+                android:id="@+id/gender"
                 android:textColor="@color/purple_700"
-            android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"/>
             <Spinner
                 android:id="@+id/gndr"
                 android:layout_width="wrap_content"
