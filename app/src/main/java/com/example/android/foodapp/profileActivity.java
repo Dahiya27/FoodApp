@@ -80,7 +80,7 @@ String address1;
     List<Address> addresses;
    private Button Update;
    private Uri filepath;
-    String downloadurl;
+    String downloadurl="noImage";
     String urli;
     private static final int Gallery_pick = 1000;
     private static final int Permission_code = 1001;
@@ -134,7 +134,7 @@ String address1;
                                 myimage.setImageResource(R.drawable.burger__fastfood__food__hamburger__junkfood__beef__drink_512);
                             }
                             else{
-                                Picasso.get().load(documentSnapshot.getString("image")).into(myimage);
+                                Picasso.get().load(documentSnapshot.getString("image")).centerCrop(-10).fit().into(myimage);
                             }
 
 
@@ -277,12 +277,8 @@ private void pickImageFromGallery(){
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==Gallery_pick && resultCode==RESULT_OK && data!=null){
             filepath=data.getData();
-            try {
-                Bitmap bitmap=MediaStore.Images.Media.getBitmap(getContentResolver(),filepath);
-                myimage.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Picasso.get().load(filepath).fit().centerCrop(-10).into(myimage);
+
         }
     }
 
@@ -297,7 +293,7 @@ private void pickImageFromGallery(){
         doc.put("stateName",stateName);
         doc.put("genderType",genderType);
         doc.put("Description",Description);
-        doc.put("image",downloadurl);
+        doc.put("image",urli);
         doc.put("Address",address);
 fstore.collection("users").document(id).set(doc).addOnSuccessListener(new OnSuccessListener<Void>() {
     @Override

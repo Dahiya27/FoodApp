@@ -24,10 +24,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore fstore;
     DrawerLayout drawer;
     NavController navController;
+    private TextView fname,femail,fstate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         View header=navigationView.getHeaderView(0);
         ImageView navImage=(ImageView)header.findViewById(R.id.nav_imageView);
+        TextView nav_username = header.findViewById(R.id.nav_username);
+        TextView nav_emailid = header.findViewById(R.id.nav_emailid);
+        TextView nav_state = header.findViewById(R.id.nav_state);
+
         navImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,19 +91,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         String id=mAuth.getCurrentUser().getUid();
-        fstore.collection("users").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        fstore.collection("users").document(id).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
+            public void onEvent(@Nullable @org.jetbrains.annotations.Nullable DocumentSnapshot documentSnapshot, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
                 if(documentSnapshot.exists()){
-                String url=documentSnapshot.getString("image");
-                if(url.equals("noImage")){
-                    navImage.setImageResource(R.drawable.burger__fastfood__food__hamburger__junkfood__beef__drink_512);
+                    String url=documentSnapshot.getString("image");
+                    nav_username.setText(documentSnapshot.getString("FullName"));
+                    nav_state.setText(documentSnapshot.getString("stateName"));
+                    nav_emailid.setText(documentSnapshot.getString("Email"));
+                    if(url.equals("noImage")){
+                        navImage.setImageResource(R.drawable.burger__fastfood__food__hamburger__junkfood__beef__drink_512);
+                    }
+                    else{
+                        Picasso.get().load(url).into(navImage);
+                    }
                 }
-                else{
-                    Picasso.get().load(url).into(navImage);
-                }
-            }}
+            }
         });
+
 navigationView.bringToFront();
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -107,7 +120,7 @@ navigationView.bringToFront();
        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
        NavigationUI.setupWithNavController(navigationView, navController);
        Log.d(TAG, "updateNavHeader:"+currentUser.getDisplayName());
-        updateNavHeader();
+
 
     }
 
@@ -155,38 +168,10 @@ navigationView.bringToFront();
                 || super.onSupportNavigateUp();
     }
 
-    private void updateNavHeader() {
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
 
-        TextView nav_username = headerView.findViewById(R.id.nav_username);
-        TextView nav_emailid = headerView.findViewById(R.id.nav_emailid);
-        TextView nav_state = headerView.findViewById(R.id.nav_state);
-
-        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userProfile = snapshot.getValue(User.class);
-                if(userProfile!=null){
-                    String name = userProfile.fname;
-                    String email = userProfile.email;
-                    String state = userProfile.state;
-
-                    nav_username.setText(name);
-                    nav_emailid.setText(email);
-                    nav_state.setText(state);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, "Some error occured!", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
 
         // Glide.with(this).load(currentUser.getPhotoUrl()).into(navImage);
     }
 
-}
