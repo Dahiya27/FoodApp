@@ -9,11 +9,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".StartActivity">
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:src="@drawable/pic"/>
+        android:src="@drawable/pic" />
 
     <Button
         android:layout_width="wrap_content"
@@ -33,6 +34,17 @@
         android:id="@+id/login"
         android:text="Login!" />
 
+    <Button
+        android:id="@+id/restro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="645dp"
+        android:text="Restaurant Owner? Head here" />
 
 
 </RelativeLayout>

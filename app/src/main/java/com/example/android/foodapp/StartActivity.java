@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.google.android.gms.common.api.Api;
@@ -34,6 +35,7 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_start);
 
         Button signup = (Button) findViewById(R.id.signup);
@@ -43,6 +45,11 @@ public class StartActivity extends AppCompatActivity {
         Button login = (Button) findViewById(R.id.login);
         login.setOnClickListener(v -> {
             startActivity(new Intent(StartActivity.this, LoginActivity.class));
+        });
+
+        Button restro = (Button) findViewById(R.id.restro);
+        restro.setOnClickListener(v -> {
+            startActivity(new Intent(StartActivity.this, RestroActivity.class));
         });
     }
 
