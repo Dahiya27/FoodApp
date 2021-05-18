@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodApp">
-        <activity android:name=".RestroSignUp"></activity>
+        <activity android:name=".RestroHome"></activity>
+        <activity android:name=".RestroSignUp" />
         <activity android:name=".RestroActivity" />
         <activity android:name=".activity_splashscreen">
             <intent-filter>

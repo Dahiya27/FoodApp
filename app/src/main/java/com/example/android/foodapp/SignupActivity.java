@@ -56,7 +56,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_signup);
         mAuth = FirebaseAuth.getInstance();
         Spinner spinner=(Spinner) findViewById(R.id.spinner);
-Spinner Gender=(Spinner)findViewById(R.id.gender);
+        Spinner Gender=(Spinner)findViewById(R.id.gender);
 
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,R.array.genders,android.R.layout.simple_spinner_item);
 

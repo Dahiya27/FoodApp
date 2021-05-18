@@ -40,12 +40,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/username"
-            android:hint="Username"
+            android:hint="Email Address"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
+            android:id="@+id/loginbutt"
             android:layout_marginTop="5dp"
             android:background="#000"
             android:textColor="#fff"
@@ -85,6 +87,7 @@
             />
 
         <Button
+            android:id="@+id/newuser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
