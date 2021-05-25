@@ -36,7 +36,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="Restaurant UserName"
             android:id="@+id/restroname"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -50,7 +50,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="Contact Number"
             android:id="@+id/restrocontact"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -64,7 +64,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="Address"
             android:id="@+id/restroaddress"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -78,7 +78,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="Email Id"
             android:id="@+id/restroemail"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -92,7 +92,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="Password"
             android:id="@+id/restropass"
             app:passwordToggleEnabled="true"
@@ -110,16 +110,16 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:text="Sign Up"
-        android:background="#000"
-        android:textColor="#fff"
+        android:background="@color/purple_200"
+        android:textColor="@color/teal_700"
         android:id="@+id/regbutt"/>
 
     <Button
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:text="Not A New User? Sign In!!"
         android:background="#00000000"
         android:textColor="#000"

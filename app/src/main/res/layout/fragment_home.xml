@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
     android:id="@+id/recView"
-    android:background="@color/purple_200">
+    android:background="@drawable/__1">
 
 
 </androidx.recyclerview.widget.RecyclerView>

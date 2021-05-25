@@ -81,8 +81,8 @@
             android:text="Submit"
             android:id="@+id/loginbutt"
             android:layout_marginTop="5dp"
-            android:background="#000"
-            android:textColor="#fff"
+            android:background="@color/purple_200"
+            android:textColor="@color/teal_700"
             android:layout_marginBottom="5dp"
             />
 

@@ -80,6 +80,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Login!"
+        android:background="@color/purple_200"
+        android:textColor="@color/teal_700"
         android:id="@+id/login_button"/>
 
     <LinearLayout
