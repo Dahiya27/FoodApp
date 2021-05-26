@@ -44,7 +44,7 @@ public class viewcart extends AppCompatActivity {
     private TextView total;
     Context context;
 RecyclerView rec;
-    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

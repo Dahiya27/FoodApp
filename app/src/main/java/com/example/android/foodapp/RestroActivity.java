@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -34,6 +35,7 @@ public class RestroActivity extends AppCompatActivity {
         usernam=findViewById(R.id.username);
         password=findViewById(R.id.pass);
         loginbutt=findViewById(R.id.loginbutt);
+        fAuth=FirebaseAuth.getInstance();
 
         callsignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +63,6 @@ public class RestroActivity extends AppCompatActivity {
                     password.setError("Password must be atleast 6 characters.");
                     return;
                 }
-
                 fAuth.signInWithEmailAndPassword(username,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

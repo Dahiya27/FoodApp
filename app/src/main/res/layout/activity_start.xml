@@ -1,56 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
 
     android:scrollbars="none"
     android:layout_width="match_parent"
-    android:background="@drawable/pic"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".StartActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/restro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="120dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/purple_200"
-            android:text="Restaurant Owner? Head here"
-            android:textColor="@color/teal_700" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pic" />
 
-        <Button
-            android:id="@+id/signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="150dp"
-            android:background="@color/purple_200"
-            android:text="Signup!"
-            android:textColor="@color/teal_700" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/signup"
+        android:layout_above="@id/login"
+        android:text="Signup!" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/login"
+        android:text="Login!" />
 
-
-        <Button
-            android:id="@+id/login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:background="@color/purple_200"
-
-            android:text="Login!"
-            android:textColor="@color/teal_700" />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/restro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="64dp"
+        android:text="Restaurant Owner? Head here" />
 
 
-
-</LinearLayout>
+</RelativeLayout>
