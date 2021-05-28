@@ -23,6 +23,7 @@ import com.example.android.foodapp.food_menu_per_restro;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,7 +40,7 @@ public class ViewDishesFragment extends Fragment {
     ViewDishAdapter adapter;
     RecyclerView viewDishRecView;
     FirebaseFirestore db;
-
+    ArrayList<Membr> list = new ArrayList<>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -60,7 +61,7 @@ public class ViewDishesFragment extends Fragment {
         db =FirebaseFirestore.getInstance();
 
 
-        CollectionReference userRef = db.collection("Restaurants");
+        CollectionReference userRef = db.collection("Restaurants").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("foodmenu");
 
 
         userRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -68,7 +69,7 @@ public class ViewDishesFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful())
                 {
-                    ArrayList<Membr> list = new ArrayList<>();
+
                     for(QueryDocumentSnapshot document : task.getResult())
                     {
                         if(document.exists())

@@ -3,6 +3,7 @@ package com.example.android.foodapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -70,9 +71,7 @@ public class StartActivity extends AppCompatActivity {
             });
 
 fstore.collection("users").document(fauth.getCurrentUser().getUid()).update("total","0");
-
-            startActivity(new Intent(StartActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-        }
+            }
     }
 
 }

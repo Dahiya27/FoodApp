@@ -104,6 +104,8 @@ public class RestroSignUp extends AppCompatActivity {
         item.put("ContactNumber",rescont.getEditText().getText().toString().trim());
         item.put("Address",resadd.getEditText().getText().toString().trim());
         item.put("EmailId",resemail.getEditText().getText().toString().trim());
+        Map<String,Object>doc=new HashMap<>();
+        //dbroot.collection("Restaurants").document(fAuth.getCurrentUser().getUid()).set()
         dbroot.collection("Restro").add(item)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
