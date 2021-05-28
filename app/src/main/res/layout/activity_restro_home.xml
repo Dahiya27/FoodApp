@@ -5,15 +5,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:openDrawer="left"
     android:id="@+id/my_drawer_layout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/__1"
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/fragment">
 
 
     </LinearLayout>
@@ -24,6 +28,7 @@
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:id="@+id/navigation"
         android:layout_gravity="start"
         app:menu="@menu/restro_main_drawer" />
 

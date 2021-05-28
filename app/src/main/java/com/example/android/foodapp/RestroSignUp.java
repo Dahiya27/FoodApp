@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,12 +16,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RestroSignUp extends AppCompatActivity {
 
     TextInputLayout resUsername, resadd, rescont, resemail, respass;
     Button regbutt, regtologinbutt;
     FirebaseAuth fAuth;
+    FirebaseFirestore dbroot;
+
 
 
     @Override
@@ -35,6 +43,7 @@ public class RestroSignUp extends AppCompatActivity {
         respass = findViewById(R.id.restropass);
         regbutt = findViewById(R.id.regbutt);
         regtologinbutt = findViewById(R.id.regtologinbutt);
+        dbroot =FirebaseFirestore.getInstance();
 
         fAuth=FirebaseAuth.getInstance();
         if(fAuth.getCurrentUser()!=null)
@@ -53,6 +62,7 @@ public class RestroSignUp extends AppCompatActivity {
         regbutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                insertdata();
                 String email = resemail.getEditText().getText().toString().trim();
                 String pass = respass.getEditText().getText().toString().trim();
 
@@ -87,5 +97,23 @@ public class RestroSignUp extends AppCompatActivity {
                 });
             }
         });
+    }
+    public void insertdata(){
+        Map<String,String> item=new HashMap<>();
+        item.put("RestaurantUserName",resUsername.getEditText().getText().toString().trim());
+        item.put("ContactNumber",rescont.getEditText().getText().toString().trim());
+        item.put("Address",resadd.getEditText().getText().toString().trim());
+        item.put("EmailId",resemail.getEditText().getText().toString().trim());
+        dbroot.collection("Restro").add(item)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        resUsername.getEditText().setText("");
+                        rescont.getEditText().setText("");
+                        resadd.getEditText().setText("");
+                        resemail.getEditText().setText("");
+                    }
+                });
+
     }
 }

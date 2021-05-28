@@ -40,7 +40,7 @@ public class RestroActivity extends AppCompatActivity {
         callsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),RestroSignUp.class));
+                startActivity(new Intent(RestroActivity.this,RestroSignUp.class));
                 finish();
             }
         });

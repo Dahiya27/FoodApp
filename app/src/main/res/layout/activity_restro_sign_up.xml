@@ -37,7 +37,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Restaurant UserName"
+                android:hint="Restaurant Name"
             android:id="@+id/restroname"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -113,7 +113,7 @@
         android:layout_height="40dp"
         android:text="Sign Up"
         android:background="@color/purple_200"
-        android:textColor="@color/teal_700"
+        android:textColor="@color/black"
         android:id="@+id/regbutt"/>
 
     <Button
