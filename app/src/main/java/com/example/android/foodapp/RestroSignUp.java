@@ -87,7 +87,7 @@ public class RestroSignUp extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(RestroSignUp.this, "Restro Added Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),RestroHome.class));
+                            startActivity(new Intent(getApplicationContext(),restroinfo.class));
                         }
                         else
                         {

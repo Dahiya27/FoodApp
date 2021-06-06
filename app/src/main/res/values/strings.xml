@@ -41,6 +41,15 @@
 
 
     </string-array>
+    <string-array name="type">
+        <item>Cafe</item>
+        <item>Cake</item>
+        <item>Family Restaurant</item>
+        <item>FastFood</item>
+        <item>IceCream</item>
+        <item>Juice</item>
+        <item>Pizza</item>
+    </string-array>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
